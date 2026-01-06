@@ -38,5 +38,5 @@ def login():
 @auth_bp.route("/logout")
 def logout():
     session.pop("user", None)
-    flash("Logged out successfully", "info")
+    flash("Logged out successfully", "danger")
     return redirect(url_for("auth.login"))

@@ -1,12 +1,12 @@
 from flask import Blueprint, redirect, request, url_for, render_template, session, flash 
 from app import db
-from app.models import Task
+from app.models import Task, User
 
 tasks_bp = Blueprint('tasks', __name__)
 
 @tasks_bp.route('/')
 def view_tasks():
-    if 'user' not in session:
+    if 'uname' not in session:
         return redirect(url_for("auth.login"))
 
     tasks = Task.query.all()
@@ -14,7 +14,7 @@ def view_tasks():
 
 @tasks_bp.route('/add', methods=["POST"])
 def add_tasks():
-    if 'user' not in session:
+    if 'uname' not in session:
         return redirect(url_for("auth.login"))
     
     title = request.form.get('title').strip()
@@ -28,7 +28,7 @@ def add_tasks():
 
 @tasks_bp.route('/toggle/<int:task_id>', methods=["POST"])
 def toggle_status(task_id):
-    if "user" not in session:
+    if "uname" not in session:
         return redirect(url_for("auth.login"))
     task = Task.query.get(task_id)
     if task:
@@ -43,7 +43,7 @@ def toggle_status(task_id):
 
 @tasks_bp.route('/clear', methods=["POST"])
 def clear_tasks():
-    if "user" not in session:
+    if "uname" not in session:
         return redirect(url_for("auth.login"))
     Task.query.delete()
     db.session.commit()

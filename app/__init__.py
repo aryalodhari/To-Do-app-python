@@ -13,7 +13,7 @@ def create_app():
 
     db.init_app(app)
 
-    from app.models import Task   # 🔥 IMPORTANT
+    from app.models import Task, User  # 🔥 IMPORTANT
 
     with app.app_context():
         db.create_all()           # 🔥 THIS CREATES task TABLE

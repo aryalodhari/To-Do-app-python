@@ -29,11 +29,9 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and user.check_password(password):
-            session['uname'] = user.username
             session['email'] = user.email
-            session['pass'] = user.password
             flash("Login successful", "success")
-            return redirect(url_for("tasks.view_tasks"))
+            return redirect(url_for("auth.dashboard"))
         else:
             return render_template("login.html", error='Invalid user!')
     
@@ -63,6 +61,13 @@ def register():
         return redirect(url_for("auth.login"))
 
     return render_template("register.html")
+
+@auth_bp.route("/dashboard")
+def dashboard():
+    if session['email']:
+        user = User.query.filter_by(email=session['email']).first()
+        return render_template("dashboard.html",user=user)
+    return redirect(url_for("auth.login"))
 
 @auth_bp.route("/logout")
 def logout():

@@ -74,6 +74,14 @@ footer p{
     border-radius: 8px;
     box-shadow: 0 -2px 8px rgb(0, 0, 0, 0.1);
 }
+.dashboard-box{
+    max-width: 700px;
+    color: rgb(20, 15, 15);
+    padding: 30px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 -2px 8px rgb(0, 0, 0, 0.1);
+}
 .form-group{
     margin-bottom: 20px;
 }
@@ -198,4 +206,15 @@ footer p{
     border-radius: 7px;
     border: 2px solid rgb(17, 15, 15);
     cursor: pointer;
+}
+.dsh-btn{
+    background-color: rgb(247, 134, 134);
+    color: white;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.dsh-btn:hover{
+    background-color: red;
 }
